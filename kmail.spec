@@ -5,19 +5,19 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kmail
-Version  : 18.08.0
-Release  : 3
-URL      : https://download.kde.org/stable/applications/18.08.0/src/kmail-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/kmail-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/kmail-18.08.0.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 18.12.2
+Release  : 4
+URL      : https://download.kde.org/stable/applications/18.12.2/src/kmail-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/kmail-18.12.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.2/src/kmail-18.12.2.tar.xz.sig
+Summary  : KDE mail client
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.1
-Requires: kmail-bin
-Requires: kmail-lib
-Requires: kmail-data
-Requires: kmail-license
-Requires: kmail-locales
+Requires: kmail-bin = %{version}-%{release}
+Requires: kmail-data = %{version}-%{release}
+Requires: kmail-lib = %{version}-%{release}
+Requires: kmail-license = %{version}-%{release}
+Requires: kmail-locales = %{version}-%{release}
 BuildRequires : akonadi-contacts-dev
 BuildRequires : akonadi-dev
 BuildRequires : akonadi-mime-dev
@@ -40,7 +40,6 @@ BuildRequires : kontactinterface-dev
 BuildRequires : kpimtextedit-dev
 BuildRequires : ktnef-dev
 BuildRequires : libassuan-dev
-BuildRequires : libgpg-error-dev
 BuildRequires : libgravatar-dev
 BuildRequires : libkdepim-dev
 BuildRequires : libkleo-dev
@@ -48,7 +47,7 @@ BuildRequires : libksieve-dev
 BuildRequires : mailcommon-dev
 BuildRequires : messagelib-dev
 BuildRequires : pimcommon-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 BuildRequires : qtwebengine-dev
 BuildRequires : syntax-highlighting-dev
 
@@ -58,8 +57,8 @@ No detailed description available
 %package bin
 Summary: bin components for the kmail package.
 Group: Binaries
-Requires: kmail-data
-Requires: kmail-license
+Requires: kmail-data = %{version}-%{release}
+Requires: kmail-license = %{version}-%{release}
 
 %description bin
 bin components for the kmail package.
@@ -84,8 +83,8 @@ doc components for the kmail package.
 %package lib
 Summary: lib components for the kmail package.
 Group: Libraries
-Requires: kmail-data
-Requires: kmail-license
+Requires: kmail-data = %{version}-%{release}
+Requires: kmail-license = %{version}-%{release}
 
 %description lib
 lib components for the kmail package.
@@ -108,30 +107,30 @@ locales components for the kmail package.
 
 
 %prep
-%setup -q -n kmail-18.08.0
+%setup -q -n kmail-18.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535430868
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1549929938
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535430868
+export SOURCE_DATE_EPOCH=1549929938
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/kmail
-cp COPYING %{buildroot}/usr/share/doc/kmail/COPYING
-cp COPYING.DOC %{buildroot}/usr/share/doc/kmail/COPYING.DOC
-cp COPYING.LIB %{buildroot}/usr/share/doc/kmail/COPYING.LIB
-cp ktnef/COPYING %{buildroot}/usr/share/doc/kmail/ktnef_COPYING
-cp ktnef/COPYING.DOC %{buildroot}/usr/share/doc/kmail/ktnef_COPYING.DOC
-cp ktnef/COPYING.LIB %{buildroot}/usr/share/doc/kmail/ktnef_COPYING.LIB
+mkdir -p %{buildroot}/usr/share/package-licenses/kmail
+cp COPYING %{buildroot}/usr/share/package-licenses/kmail/COPYING
+cp COPYING.DOC %{buildroot}/usr/share/package-licenses/kmail/COPYING.DOC
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kmail/COPYING.LIB
+cp ktnef/COPYING %{buildroot}/usr/share/package-licenses/kmail/ktnef_COPYING
+cp ktnef/COPYING.DOC %{buildroot}/usr/share/package-licenses/kmail/ktnef_COPYING.DOC
+cp ktnef/COPYING.LIB %{buildroot}/usr/share/package-licenses/kmail/ktnef_COPYING.LIB
 pushd clr-build
 %make_install
 popd
@@ -141,6 +140,7 @@ popd
 %find_lang akonadi_sendlater_agent
 %find_lang kmail
 %find_lang ktnef
+%find_lang akonadi_unifiedmailbox_agent
 
 %files
 %defattr(-,root,root,-)
@@ -151,6 +151,7 @@ popd
 /usr/bin/akonadi_followupreminder_agent
 /usr/bin/akonadi_mailfilter_agent
 /usr/bin/akonadi_sendlater_agent
+/usr/bin/akonadi_unifiedmailbox_agent
 /usr/bin/kmail
 /usr/bin/ktnef
 
@@ -160,6 +161,7 @@ popd
 /usr/share/akonadi/agents/followupreminder.desktop
 /usr/share/akonadi/agents/mailfilteragent.desktop
 /usr/share/akonadi/agents/sendlateragent.desktop
+/usr/share/akonadi/agents/unifiedmailboxagent.desktop
 /usr/share/applications/kmail_view.desktop
 /usr/share/applications/org.kde.kmail2.desktop
 /usr/share/applications/org.kde.ktnef.desktop
@@ -206,7 +208,7 @@ popd
 /usr/share/icons/hicolor/8x8/emblems/gpg-key-trust-level-2.svg
 /usr/share/icons/hicolor/8x8/emblems/gpg-key-trust-level-3.svg
 /usr/share/icons/hicolor/8x8/emblems/gpg-key-trust-level-4.svg
-/usr/share/icons/hicolor/scalable/apps/kmail.svgz
+/usr/share/icons/hicolor/scalable/apps/kmail.svg
 /usr/share/kconf_update/kmail-15.08-kickoff.sh
 /usr/share/kconf_update/kmail.upd
 /usr/share/kconf_update/kmail2.sh
@@ -219,7 +221,6 @@ popd
 /usr/share/knotifications5/kmail2.notifyrc
 /usr/share/kontact/ksettingsdialog/kmail.setdlg
 /usr/share/kontact/ksettingsdialog/summary.setdlg
-/usr/share/kservices5/ServiceMenus/kmail_addattachmentservicemenu.desktop
 /usr/share/kservices5/kcmkmailsummary.desktop
 /usr/share/kservices5/kcmkontactsummary.desktop
 /usr/share/kservices5/kmail_config_accounts.desktop
@@ -251,6 +252,7 @@ popd
 /usr/share/doc/HTML/ca/akonadi_sendlater_agent/sendlateragent-configure.png
 /usr/share/doc/HTML/ca/akonadi_sendlater_agent/sendlateragent-dialog.png
 /usr/share/doc/HTML/ca/kmail2/configure.docbook
+/usr/share/doc/HTML/ca/kmail2/credits-and-licenses.docbook
 /usr/share/doc/HTML/ca/kmail2/faq.docbook
 /usr/share/doc/HTML/ca/kmail2/getting-started.docbook
 /usr/share/doc/HTML/ca/kmail2/index.cache.bz2
@@ -268,6 +270,7 @@ popd
 /usr/share/doc/HTML/de/akonadi_sendlater_agent/index.cache.bz2
 /usr/share/doc/HTML/de/akonadi_sendlater_agent/index.docbook
 /usr/share/doc/HTML/de/kmail2/configure.docbook
+/usr/share/doc/HTML/de/kmail2/credits-and-licenses.docbook
 /usr/share/doc/HTML/de/kmail2/faq.docbook
 /usr/share/doc/HTML/de/kmail2/getting-started.docbook
 /usr/share/doc/HTML/de/kmail2/index.cache.bz2
@@ -292,6 +295,7 @@ popd
 /usr/share/doc/HTML/en/kmail2/aggregationtheme.png
 /usr/share/doc/HTML/en/kmail2/configure.docbook
 /usr/share/doc/HTML/en/kmail2/configure.png
+/usr/share/doc/HTML/en/kmail2/credits-and-licenses.docbook
 /usr/share/doc/HTML/en/kmail2/faq.docbook
 /usr/share/doc/HTML/en/kmail2/folder-example.png
 /usr/share/doc/HTML/en/kmail2/folder-properties.png
@@ -332,6 +336,7 @@ popd
 /usr/share/doc/HTML/es/akonadi_sendlater_agent/index.cache.bz2
 /usr/share/doc/HTML/es/akonadi_sendlater_agent/index.docbook
 /usr/share/doc/HTML/es/kmail2/configure.docbook
+/usr/share/doc/HTML/es/kmail2/credits-and-licenses.docbook
 /usr/share/doc/HTML/es/kmail2/faq.docbook
 /usr/share/doc/HTML/es/kmail2/getting-started.docbook
 /usr/share/doc/HTML/es/kmail2/index.cache.bz2
@@ -365,6 +370,7 @@ popd
 /usr/share/doc/HTML/nl/akonadi_sendlater_agent/index.cache.bz2
 /usr/share/doc/HTML/nl/akonadi_sendlater_agent/index.docbook
 /usr/share/doc/HTML/nl/kmail2/configure.docbook
+/usr/share/doc/HTML/nl/kmail2/credits-and-licenses.docbook
 /usr/share/doc/HTML/nl/kmail2/faq.docbook
 /usr/share/doc/HTML/nl/kmail2/getting-started.docbook
 /usr/share/doc/HTML/nl/kmail2/index.cache.bz2
@@ -388,6 +394,7 @@ popd
 /usr/share/doc/HTML/pt_BR/akonadi_sendlater_agent/index.cache.bz2
 /usr/share/doc/HTML/pt_BR/akonadi_sendlater_agent/index.docbook
 /usr/share/doc/HTML/pt_BR/kmail2/configure.docbook
+/usr/share/doc/HTML/pt_BR/kmail2/credits-and-licenses.docbook
 /usr/share/doc/HTML/pt_BR/kmail2/faq.docbook
 /usr/share/doc/HTML/pt_BR/kmail2/getting-started.docbook
 /usr/share/doc/HTML/pt_BR/kmail2/index.cache.bz2
@@ -405,6 +412,7 @@ popd
 /usr/share/doc/HTML/sv/akonadi_sendlater_agent/index.cache.bz2
 /usr/share/doc/HTML/sv/akonadi_sendlater_agent/index.docbook
 /usr/share/doc/HTML/sv/kmail2/configure.docbook
+/usr/share/doc/HTML/sv/kmail2/credits-and-licenses.docbook
 /usr/share/doc/HTML/sv/kmail2/faq.docbook
 /usr/share/doc/HTML/sv/kmail2/getting-started.docbook
 /usr/share/doc/HTML/sv/kmail2/index.cache.bz2
@@ -422,6 +430,7 @@ popd
 /usr/share/doc/HTML/uk/akonadi_sendlater_agent/index.cache.bz2
 /usr/share/doc/HTML/uk/akonadi_sendlater_agent/index.docbook
 /usr/share/doc/HTML/uk/kmail2/configure.docbook
+/usr/share/doc/HTML/uk/kmail2/credits-and-licenses.docbook
 /usr/share/doc/HTML/uk/kmail2/faq.docbook
 /usr/share/doc/HTML/uk/kmail2/getting-started.docbook
 /usr/share/doc/HTML/uk/kmail2/index.cache.bz2
@@ -437,7 +446,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libkmailprivate.so.5
-/usr/lib64/libkmailprivate.so.5.9.0
+/usr/lib64/libkmailprivate.so.5.10.2
 /usr/lib64/qt5/plugins/kcm_kmail.so
 /usr/lib64/qt5/plugins/kcm_kmailsummary.so
 /usr/lib64/qt5/plugins/kcm_kontactsummary.so
@@ -446,22 +455,14 @@ popd
 /usr/lib64/qt5/plugins/kontact_summaryplugin.so
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/HTML/ca/kmail2/credits-and-licenses.docbook
-/usr/share/doc/HTML/de/kmail2/credits-and-licenses.docbook
-/usr/share/doc/HTML/en/kmail2/credits-and-licenses.docbook
-/usr/share/doc/HTML/es/kmail2/credits-and-licenses.docbook
-/usr/share/doc/HTML/nl/kmail2/credits-and-licenses.docbook
-/usr/share/doc/HTML/pt_BR/kmail2/credits-and-licenses.docbook
-/usr/share/doc/HTML/sv/kmail2/credits-and-licenses.docbook
-/usr/share/doc/HTML/uk/kmail2/credits-and-licenses.docbook
-/usr/share/doc/kmail/COPYING
-/usr/share/doc/kmail/COPYING.DOC
-/usr/share/doc/kmail/COPYING.LIB
-/usr/share/doc/kmail/ktnef_COPYING
-/usr/share/doc/kmail/ktnef_COPYING.DOC
-/usr/share/doc/kmail/ktnef_COPYING.LIB
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/kmail/COPYING
+/usr/share/package-licenses/kmail/COPYING.DOC
+/usr/share/package-licenses/kmail/COPYING.LIB
+/usr/share/package-licenses/kmail/ktnef_COPYING
+/usr/share/package-licenses/kmail/ktnef_COPYING.DOC
+/usr/share/package-licenses/kmail/ktnef_COPYING.LIB
 
-%files locales -f akonadi_archivemail_agent.lang -f akonadi_followupreminder_agent.lang -f akonadi_mailfilter_agent.lang -f akonadi_sendlater_agent.lang -f kmail.lang -f ktnef.lang
+%files locales -f akonadi_archivemail_agent.lang -f akonadi_followupreminder_agent.lang -f akonadi_mailfilter_agent.lang -f akonadi_sendlater_agent.lang -f kmail.lang -f ktnef.lang -f akonadi_unifiedmailbox_agent.lang
 %defattr(-,root,root,-)
 
