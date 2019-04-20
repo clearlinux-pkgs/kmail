@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kmail
-Version  : 18.12.3
-Release  : 5
-URL      : https://download.kde.org/stable/applications/18.12.3/src/kmail-18.12.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.3/src/kmail-18.12.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.3/src/kmail-18.12.3.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 19.04.0
+Release  : 6
+URL      : https://download.kde.org/stable/applications/19.04.0/src/kmail-19.04.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.0/src/kmail-19.04.0.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.0/src/kmail-19.04.0.tar.xz.sig
+Summary  : KDE mail client
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.1
 Requires: kmail-bin = %{version}-%{release}
@@ -108,23 +108,22 @@ locales components for the kmail package.
 
 
 %prep
-%setup -q -n kmail-18.12.3
+%setup -q -n kmail-19.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552024831
+export SOURCE_DATE_EPOCH=1555727789
 mkdir -p clr-build
 pushd clr-build
-export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1552024831
+export SOURCE_DATE_EPOCH=1555727789
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kmail
 cp COPYING %{buildroot}/usr/share/package-licenses/kmail/COPYING
@@ -448,7 +447,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libkmailprivate.so.5
-/usr/lib64/libkmailprivate.so.5.10.3
+/usr/lib64/libkmailprivate.so.5.11.0
+/usr/lib64/qt5/plugins/akonadi/config/archivemailagentconfig.so
+/usr/lib64/qt5/plugins/akonadi/config/followupreminderagentconfig.so
 /usr/lib64/qt5/plugins/kcm_kmail.so
 /usr/lib64/qt5/plugins/kcm_kmailsummary.so
 /usr/lib64/qt5/plugins/kcm_kontactsummary.so
