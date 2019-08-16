@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kmail
-Version  : 19.04.3
-Release  : 9
-URL      : https://download.kde.org/stable/applications/19.04.3/src/kmail-19.04.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.3/src/kmail-19.04.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.3/src/kmail-19.04.3.tar.xz.sig
+Version  : 19.08.0
+Release  : 10
+URL      : https://download.kde.org/stable/applications/19.08.0/src/kmail-19.08.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.0/src/kmail-19.08.0.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.0/src/kmail-19.08.0.tar.xz.sig
 Summary  : KDE mail client
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.1
@@ -31,6 +31,7 @@ BuildRequires : kcalutils-dev
 BuildRequires : kcontacts-dev
 BuildRequires : kdepim-apps-libs-dev
 BuildRequires : kidentitymanagement-dev
+BuildRequires : kimap-dev
 BuildRequires : kldap-dev
 BuildRequires : kmailtransport-dev
 BuildRequires : kmime-dev
@@ -38,6 +39,8 @@ BuildRequires : knotifyconfig-dev
 BuildRequires : kontactinterface-dev
 BuildRequires : kpimtextedit-dev
 BuildRequires : ktnef-dev
+BuildRequires : libassuan-dev
+BuildRequires : libgpg-error-dev
 BuildRequires : libgravatar-dev
 BuildRequires : libkdepim-dev
 BuildRequires : libkleo-dev
@@ -105,16 +108,17 @@ locales components for the kmail package.
 
 
 %prep
-%setup -q -n kmail-19.04.3
+%setup -q -n kmail-19.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1563058562
+export SOURCE_DATE_EPOCH=1565942474
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -128,7 +132,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1563058562
+export SOURCE_DATE_EPOCH=1565942474
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kmail
 cp COPYING %{buildroot}/usr/share/package-licenses/kmail/COPYING
@@ -147,6 +151,7 @@ popd
 %find_lang kmail
 %find_lang ktnef
 %find_lang akonadi_unifiedmailbox_agent
+%find_lang kmail-refresh-settings
 
 %files
 %defattr(-,root,root,-)
@@ -159,6 +164,7 @@ popd
 /usr/bin/akonadi_sendlater_agent
 /usr/bin/akonadi_unifiedmailbox_agent
 /usr/bin/kmail
+/usr/bin/kmail-refresh-settings
 /usr/bin/ktnef
 
 %files data
@@ -169,12 +175,14 @@ popd
 /usr/share/akonadi/agents/sendlateragent.desktop
 /usr/share/akonadi/agents/unifiedmailboxagent.desktop
 /usr/share/applications/kmail_view.desktop
+/usr/share/applications/org.kde.kmail-refresh-settings.desktop
 /usr/share/applications/org.kde.kmail2.desktop
 /usr/share/applications/org.kde.ktnef.desktop
 /usr/share/config.kcfg/archivemailagentsettings.kcfg
 /usr/share/config.kcfg/kmail.kcfg
 /usr/share/dbus-1/interfaces/org.kde.kmail.kmail.xml
 /usr/share/dbus-1/interfaces/org.kde.kmail.kmailpart.xml
+/usr/share/dbus-1/services/org.kde.kmail.service
 /usr/share/icons/breeze-dark/16x16/emblems/gpg-key-trust-level-0.svg
 /usr/share/icons/breeze-dark/16x16/emblems/gpg-key-trust-level-1.svg
 /usr/share/icons/breeze-dark/16x16/emblems/gpg-key-trust-level-2.svg
@@ -237,13 +245,12 @@ popd
 /usr/share/kservices5/kmail_config_security.desktop
 /usr/share/kservices5/kontact/kmailplugin.desktop
 /usr/share/kservices5/kontact/summaryplugin.desktop
-/usr/share/kservicetypes5/dbusmail.desktop
 /usr/share/kxmlgui5/kontactsummary/kontactsummary_part.rc
 /usr/share/metainfo/org.kde.kmail2.appdata.xml
-/usr/share/xdg/kmail.categories
-/usr/share/xdg/kmail.renamecategories
-/usr/share/xdg/ktnefapps.categories
-/usr/share/xdg/ktnefapps.renamecategories
+/usr/share/qlogging-categories5/kmail.categories
+/usr/share/qlogging-categories5/kmail.renamecategories
+/usr/share/qlogging-categories5/ktnefapps.categories
+/usr/share/qlogging-categories5/ktnefapps.renamecategories
 
 %files doc
 %defattr(0644,root,root,0755)
@@ -452,7 +459,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libkmailprivate.so.5
-/usr/lib64/libkmailprivate.so.5.11.3
+/usr/lib64/libkmailprivate.so.5.12.0
 /usr/lib64/qt5/plugins/akonadi/config/archivemailagentconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/followupreminderagentconfig.so
 /usr/lib64/qt5/plugins/kcm_kmail.so
@@ -471,6 +478,6 @@ popd
 /usr/share/package-licenses/kmail/ktnef_COPYING.DOC
 /usr/share/package-licenses/kmail/ktnef_COPYING.LIB
 
-%files locales -f akonadi_archivemail_agent.lang -f akonadi_followupreminder_agent.lang -f akonadi_mailfilter_agent.lang -f akonadi_sendlater_agent.lang -f kmail.lang -f ktnef.lang -f akonadi_unifiedmailbox_agent.lang
+%files locales -f akonadi_archivemail_agent.lang -f akonadi_followupreminder_agent.lang -f akonadi_mailfilter_agent.lang -f akonadi_sendlater_agent.lang -f kmail.lang -f ktnef.lang -f akonadi_unifiedmailbox_agent.lang -f kmail-refresh-settings.lang
 %defattr(-,root,root,-)
 
