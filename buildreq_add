@@ -1,19 +1,32 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-kmailtransport-dev
 akonadi-contacts-dev
 akonadi-dev
 akonadi-mime-dev
 akonadi-search-dev
 boost-dev
 gpgme-dev
-kcalcore-dev
+kcalendarcore-dev
 kcalutils-dev
 kcontacts-dev
+kdepim-apps-libs-dev
 kidentitymanagement-dev
+kimap-dev
 kldap-dev
+kmailtransport-dev
 kmime-dev
 knotifyconfig-dev
+kontactinterface-dev
 kpimtextedit-dev
+ktnef-dev
+libassuan-dev
+libgpg-error-dev
+libgravatar-dev
+libkdepim-dev
+libkleo-dev
+libksieve-dev
+mailcommon-dev
 messagelib-dev
+pimcommon-dev
 qtwebengine-dev
+syntax-highlighting-dev
