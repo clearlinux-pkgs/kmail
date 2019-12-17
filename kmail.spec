@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kmail
-Version  : 19.08.3
-Release  : 14
-URL      : https://download.kde.org/stable/applications/19.08.3/src/kmail-19.08.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.08.3/src/kmail-19.08.3.tar.xz
-Source1 : https://download.kde.org/stable/applications/19.08.3/src/kmail-19.08.3.tar.xz.sig
+Version  : 19.12.0
+Release  : 15
+URL      : https://download.kde.org/stable/release-service/19.12.0/src/kmail-19.12.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/19.12.0/src/kmail-19.12.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/19.12.0/src/kmail-19.12.0.tar.xz.sig
 Summary  : KDE mail client
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.1
@@ -108,14 +108,15 @@ locales components for the kmail package.
 
 
 %prep
-%setup -q -n kmail-19.08.3
+%setup -q -n kmail-19.12.0
+cd %{_builddir}/kmail-19.12.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573540970
+export SOURCE_DATE_EPOCH=1576610010
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -132,15 +133,15 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1573540970
+export SOURCE_DATE_EPOCH=1576610010
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kmail
-cp %{_builddir}/kmail-19.08.3/COPYING %{buildroot}/usr/share/package-licenses/kmail/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/kmail-19.08.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/kmail/1bd373e4851a93027ba70064bd7dbdc6827147e1
-cp %{_builddir}/kmail-19.08.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/kmail/9a1929f4700d2407c70b507b3b2aaf6226a9543c
-cp %{_builddir}/kmail-19.08.3/ktnef/COPYING %{buildroot}/usr/share/package-licenses/kmail/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/kmail-19.08.3/ktnef/COPYING.DOC %{buildroot}/usr/share/package-licenses/kmail/1bd373e4851a93027ba70064bd7dbdc6827147e1
-cp %{_builddir}/kmail-19.08.3/ktnef/COPYING.LIB %{buildroot}/usr/share/package-licenses/kmail/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kmail-19.12.0/COPYING %{buildroot}/usr/share/package-licenses/kmail/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/kmail-19.12.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/kmail/1bd373e4851a93027ba70064bd7dbdc6827147e1
+cp %{_builddir}/kmail-19.12.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kmail/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kmail-19.12.0/ktnef/COPYING %{buildroot}/usr/share/package-licenses/kmail/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/kmail-19.12.0/ktnef/COPYING.DOC %{buildroot}/usr/share/package-licenses/kmail/1bd373e4851a93027ba70064bd7dbdc6827147e1
+cp %{_builddir}/kmail-19.12.0/ktnef/COPYING.LIB %{buildroot}/usr/share/package-licenses/kmail/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd clr-build
 %make_install
 popd
@@ -298,6 +299,8 @@ popd
 /usr/share/doc/HTML/en/akonadi_archivemail_agent/configure-archive-mail-agent.png
 /usr/share/doc/HTML/en/akonadi_archivemail_agent/index.cache.bz2
 /usr/share/doc/HTML/en/akonadi_archivemail_agent/index.docbook
+/usr/share/doc/HTML/en/akonadi_followupreminder_agent/add-followup-reminder.png
+/usr/share/doc/HTML/en/akonadi_followupreminder_agent/followupreminder-configure.png
 /usr/share/doc/HTML/en/akonadi_followupreminder_agent/index.cache.bz2
 /usr/share/doc/HTML/en/akonadi_followupreminder_agent/index.docbook
 /usr/share/doc/HTML/en/akonadi_sendlater_agent/index.cache.bz2
@@ -436,12 +439,18 @@ popd
 /usr/share/doc/HTML/sv/kmail2/using-kmail.docbook
 /usr/share/doc/HTML/sv/ktnef/index.cache.bz2
 /usr/share/doc/HTML/sv/ktnef/index.docbook
+/usr/share/doc/HTML/uk/akonadi_archivemail_agent/add-archive-mail.png
+/usr/share/doc/HTML/uk/akonadi_archivemail_agent/configure-archive-mail-agent.png
 /usr/share/doc/HTML/uk/akonadi_archivemail_agent/index.cache.bz2
 /usr/share/doc/HTML/uk/akonadi_archivemail_agent/index.docbook
+/usr/share/doc/HTML/uk/akonadi_followupreminder_agent/add-followup-reminder.png
+/usr/share/doc/HTML/uk/akonadi_followupreminder_agent/followupreminder-configure.png
 /usr/share/doc/HTML/uk/akonadi_followupreminder_agent/index.cache.bz2
 /usr/share/doc/HTML/uk/akonadi_followupreminder_agent/index.docbook
 /usr/share/doc/HTML/uk/akonadi_sendlater_agent/index.cache.bz2
 /usr/share/doc/HTML/uk/akonadi_sendlater_agent/index.docbook
+/usr/share/doc/HTML/uk/akonadi_sendlater_agent/sendlateragent-configure.png
+/usr/share/doc/HTML/uk/akonadi_sendlater_agent/sendlateragent-dialog.png
 /usr/share/doc/HTML/uk/kmail2/configure.docbook
 /usr/share/doc/HTML/uk/kmail2/credits-and-licenses.docbook
 /usr/share/doc/HTML/uk/kmail2/faq.docbook
@@ -459,7 +468,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libkmailprivate.so.5
-/usr/lib64/libkmailprivate.so.5.12.3
+/usr/lib64/libkmailprivate.so.5.13.0
 /usr/lib64/qt5/plugins/akonadi/config/archivemailagentconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/followupreminderagentconfig.so
 /usr/lib64/qt5/plugins/kcm_kmail.so
