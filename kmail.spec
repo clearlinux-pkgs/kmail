@@ -6,7 +6,7 @@
 #
 Name     : kmail
 Version  : 20.12.3
-Release  : 29
+Release  : 30
 URL      : https://download.kde.org/stable/release-service/20.12.3/src/kmail-20.12.3.tar.xz
 Source0  : https://download.kde.org/stable/release-service/20.12.3/src/kmail-20.12.3.tar.xz
 Source1  : https://download.kde.org/stable/release-service/20.12.3/src/kmail-20.12.3.tar.xz.sig
@@ -38,7 +38,6 @@ BuildRequires : kconfigwidgets-dev
 BuildRequires : kcontacts-dev
 BuildRequires : kcrash-dev
 BuildRequires : kdbusaddons-dev
-BuildRequires : kdepim-apps-libs-dev
 BuildRequires : kdoctools-dev
 BuildRequires : kguiaddons-dev
 BuildRequires : ki18n-dev
@@ -140,7 +139,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1618684096
+export SOURCE_DATE_EPOCH=1618859666
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -156,7 +155,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1618684096
+export SOURCE_DATE_EPOCH=1618859666
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kmail
 cp %{_builddir}/kmail-20.12.3/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/kmail/7697008f58568e61e7598e796eafc2a997503fde
