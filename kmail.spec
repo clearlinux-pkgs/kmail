@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kmail
-Version  : 21.12.1
-Release  : 38
-URL      : https://download.kde.org/stable/release-service/21.12.1/src/kmail-21.12.1.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.12.1/src/kmail-21.12.1.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.12.1/src/kmail-21.12.1.tar.xz.sig
+Version  : 21.12.2
+Release  : 39
+URL      : https://download.kde.org/stable/release-service/21.12.2/src/kmail-21.12.2.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.12.2/src/kmail-21.12.2.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.12.2/src/kmail-21.12.2.tar.xz.sig
 Summary  : KDE mail client
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.0
@@ -133,15 +133,15 @@ locales components for the kmail package.
 
 
 %prep
-%setup -q -n kmail-21.12.1
-cd %{_builddir}/kmail-21.12.1
+%setup -q -n kmail-21.12.2
+cd %{_builddir}/kmail-21.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1642023684
+export SOURCE_DATE_EPOCH=1644247098
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -157,19 +157,19 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1642023684
+export SOURCE_DATE_EPOCH=1644247098
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kmail
-cp %{_builddir}/kmail-21.12.1/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/kmail/29fb05b49e12a380545499938c4879440bd8851e
-cp %{_builddir}/kmail-21.12.1/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kmail/8287b608d3fa40ef401339fd907ca1260c964123
-cp %{_builddir}/kmail-21.12.1/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/kmail/7697008f58568e61e7598e796eafc2a997503fde
-cp %{_builddir}/kmail-21.12.1/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kmail/2a638514c87c4923c0570c55822620fad56f2a33
-cp %{_builddir}/kmail-21.12.1/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kmail/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/kmail-21.12.1/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kmail/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/kmail-21.12.1/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kmail/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/kmail-21.12.1/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kmail/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/kmail-21.12.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kmail/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/kmail-21.12.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kmail/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kmail-21.12.2/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/kmail/29fb05b49e12a380545499938c4879440bd8851e
+cp %{_builddir}/kmail-21.12.2/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kmail/8287b608d3fa40ef401339fd907ca1260c964123
+cp %{_builddir}/kmail-21.12.2/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/kmail/7697008f58568e61e7598e796eafc2a997503fde
+cp %{_builddir}/kmail-21.12.2/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kmail/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/kmail-21.12.2/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kmail/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/kmail-21.12.2/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kmail/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/kmail-21.12.2/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kmail/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kmail-21.12.2/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kmail/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kmail-21.12.2/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kmail/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kmail-21.12.2/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kmail/7d9831e05094ce723947d729c2a46a09d6e90275
 pushd clr-build
 %make_install
 popd
@@ -521,6 +521,14 @@ popd
 /usr/share/doc/HTML/pt_BR/kmail2/using-kmail.docbook
 /usr/share/doc/HTML/pt_BR/ktnef/index.cache.bz2
 /usr/share/doc/HTML/pt_BR/ktnef/index.docbook
+/usr/share/doc/HTML/ru/akonadi_archivemail_agent/index.cache.bz2
+/usr/share/doc/HTML/ru/akonadi_archivemail_agent/index.docbook
+/usr/share/doc/HTML/ru/akonadi_followupreminder_agent/index.cache.bz2
+/usr/share/doc/HTML/ru/akonadi_followupreminder_agent/index.docbook
+/usr/share/doc/HTML/ru/akonadi_sendlater_agent/index.cache.bz2
+/usr/share/doc/HTML/ru/akonadi_sendlater_agent/index.docbook
+/usr/share/doc/HTML/ru/ktnef/index.cache.bz2
+/usr/share/doc/HTML/ru/ktnef/index.docbook
 /usr/share/doc/HTML/sv/akonadi_archivemail_agent/index.cache.bz2
 /usr/share/doc/HTML/sv/akonadi_archivemail_agent/index.docbook
 /usr/share/doc/HTML/sv/akonadi_followupreminder_agent/index.cache.bz2
@@ -611,7 +619,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libkmailprivate.so.5
-/usr/lib64/libkmailprivate.so.5.19.1
+/usr/lib64/libkmailprivate.so.5.19.2
 /usr/lib64/qt5/plugins/akonadi/config/archivemailagentconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/followupreminderagentconfig.so
 /usr/lib64/qt5/plugins/kmailpart.so
