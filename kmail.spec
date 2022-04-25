@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kmail
-Version  : 21.12.3
-Release  : 42
-URL      : https://download.kde.org/stable/release-service/21.12.3/src/kmail-21.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.12.3/src/kmail-21.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.12.3/src/kmail-21.12.3.tar.xz.sig
+Version  : 22.04.0
+Release  : 43
+URL      : https://download.kde.org/stable/release-service/22.04.0/src/kmail-22.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.04.0/src/kmail-22.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.04.0/src/kmail-22.04.0.tar.xz.sig
 Summary  : KDE mail client
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.0
@@ -71,8 +71,6 @@ BuildRequires : libsecret-dev
 BuildRequires : mailcommon-dev
 BuildRequires : messagelib-dev
 BuildRequires : pimcommon-dev
-BuildRequires : qtbase-dev mesa-dev
-BuildRequires : qtkeychain-dev
 BuildRequires : qtwebengine-dev
 BuildRequires : sonnet-dev
 BuildRequires : syntax-highlighting-dev
@@ -133,15 +131,15 @@ locales components for the kmail package.
 
 
 %prep
-%setup -q -n kmail-21.12.3
-cd %{_builddir}/kmail-21.12.3
+%setup -q -n kmail-22.04.0
+cd %{_builddir}/kmail-22.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1646611218
+export SOURCE_DATE_EPOCH=1650860955
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -157,19 +155,20 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1646611218
+export SOURCE_DATE_EPOCH=1650860955
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kmail
-cp %{_builddir}/kmail-21.12.3/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/kmail/29fb05b49e12a380545499938c4879440bd8851e
-cp %{_builddir}/kmail-21.12.3/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kmail/8287b608d3fa40ef401339fd907ca1260c964123
-cp %{_builddir}/kmail-21.12.3/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/kmail/7697008f58568e61e7598e796eafc2a997503fde
-cp %{_builddir}/kmail-21.12.3/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kmail/2a638514c87c4923c0570c55822620fad56f2a33
-cp %{_builddir}/kmail-21.12.3/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kmail/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/kmail-21.12.3/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kmail/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/kmail-21.12.3/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kmail/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/kmail-21.12.3/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kmail/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/kmail-21.12.3/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kmail/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/kmail-21.12.3/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kmail/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kmail-22.04.0/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/kmail/c085897bc39e05746ffd2d889a6e84ff1b7ae2d9
+cp %{_builddir}/kmail-22.04.0/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kmail/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/kmail-22.04.0/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kmail/8287b608d3fa40ef401339fd907ca1260c964123
+cp %{_builddir}/kmail-22.04.0/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/kmail/7697008f58568e61e7598e796eafc2a997503fde
+cp %{_builddir}/kmail-22.04.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kmail/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/kmail-22.04.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kmail/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/kmail-22.04.0/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kmail/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/kmail-22.04.0/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kmail/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kmail-22.04.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kmail/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kmail-22.04.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kmail/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kmail-22.04.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kmail/7d9831e05094ce723947d729c2a46a09d6e90275
 pushd clr-build
 %make_install
 popd
@@ -178,10 +177,10 @@ popd
 %find_lang akonadi_mailfilter_agent
 %find_lang akonadi_sendlater_agent
 %find_lang kmail
+%find_lang ktnef
 %find_lang akonadi_mailmerge_agent
 %find_lang akonadi_unifiedmailbox_agent
 %find_lang kmail-refresh-settings
-%find_lang ktnef
 
 %files
 %defattr(-,root,root,-)
@@ -262,16 +261,6 @@ popd
 /usr/share/knotifications5/akonadi_mailmerge_agent.notifyrc
 /usr/share/knotifications5/akonadi_sendlater_agent.notifyrc
 /usr/share/knotifications5/kmail2.notifyrc
-/usr/share/kservices5/kcmkmailsummary.desktop
-/usr/share/kservices5/kcmkontactsummary.desktop
-/usr/share/kservices5/kmail_config_accounts.desktop
-/usr/share/kservices5/kmail_config_appearance.desktop
-/usr/share/kservices5/kmail_config_composer.desktop
-/usr/share/kservices5/kmail_config_misc.desktop
-/usr/share/kservices5/kmail_config_plugins.desktop
-/usr/share/kservices5/kmail_config_security.desktop
-/usr/share/kservices5/kontact/kmailplugin.desktop
-/usr/share/kservices5/kontact/summaryplugin.desktop
 /usr/share/kxmlgui5/kontactsummary/kontactsummary_part.rc
 /usr/share/metainfo/org.kde.kmail2.appdata.xml
 /usr/share/qlogging-categories5/kmail.categories
@@ -471,6 +460,8 @@ popd
 /usr/share/doc/HTML/et/akonadi_sendlater_agent/index.docbook
 /usr/share/doc/HTML/et/ktnef/index.cache.bz2
 /usr/share/doc/HTML/et/ktnef/index.docbook
+/usr/share/doc/HTML/fr/akonadi_sendlater_agent/index.cache.bz2
+/usr/share/doc/HTML/fr/akonadi_sendlater_agent/index.docbook
 /usr/share/doc/HTML/it/akonadi_archivemail_agent/index.cache.bz2
 /usr/share/doc/HTML/it/akonadi_archivemail_agent/index.docbook
 /usr/share/doc/HTML/it/akonadi_followupreminder_agent/index.cache.bz2
@@ -619,7 +610,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libkmailprivate.so.5
-/usr/lib64/libkmailprivate.so.5.19.3
+/usr/lib64/libkmailprivate.so.5.20.0
 /usr/lib64/qt5/plugins/akonadi/config/archivemailagentconfig.so
 /usr/lib64/qt5/plugins/akonadi/config/followupreminderagentconfig.so
 /usr/lib64/qt5/plugins/kmailpart.so
@@ -637,14 +628,15 @@ popd
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/kmail/20079e8f79713dce80ab09774505773c926afa2a
-/usr/share/package-licenses/kmail/29fb05b49e12a380545499938c4879440bd8851e
 /usr/share/package-licenses/kmail/2a638514c87c4923c0570c55822620fad56f2a33
 /usr/share/package-licenses/kmail/6091db0aead0d90182b93d3c0d09ba93d188f907
 /usr/share/package-licenses/kmail/7697008f58568e61e7598e796eafc2a997503fde
 /usr/share/package-licenses/kmail/7d9831e05094ce723947d729c2a46a09d6e90275
 /usr/share/package-licenses/kmail/8287b608d3fa40ef401339fd907ca1260c964123
+/usr/share/package-licenses/kmail/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+/usr/share/package-licenses/kmail/c085897bc39e05746ffd2d889a6e84ff1b7ae2d9
 /usr/share/package-licenses/kmail/e712eadfab0d2357c0f50f599ef35ee0d87534cb
 
-%files locales -f akonadi_archivemail_agent.lang -f akonadi_followupreminder_agent.lang -f akonadi_mailfilter_agent.lang -f akonadi_sendlater_agent.lang -f kmail.lang -f akonadi_mailmerge_agent.lang -f akonadi_unifiedmailbox_agent.lang -f kmail-refresh-settings.lang -f ktnef.lang
+%files locales -f akonadi_archivemail_agent.lang -f akonadi_followupreminder_agent.lang -f akonadi_mailfilter_agent.lang -f akonadi_sendlater_agent.lang -f kmail.lang -f ktnef.lang -f akonadi_mailmerge_agent.lang -f akonadi_unifiedmailbox_agent.lang -f kmail-refresh-settings.lang
 %defattr(-,root,root,-)
 
