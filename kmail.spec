@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kmail
-Version  : 22.08.2
-Release  : 49
-URL      : https://download.kde.org/stable/release-service/22.08.2/src/kmail-22.08.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/22.08.2/src/kmail-22.08.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/22.08.2/src/kmail-22.08.2.tar.xz.sig
+Version  : 22.08.3
+Release  : 50
+URL      : https://download.kde.org/stable/release-service/22.08.3/src/kmail-22.08.3.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.08.3/src/kmail-22.08.3.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.08.3/src/kmail-22.08.3.tar.xz.sig
 Summary  : KDE mail client
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.0
@@ -131,15 +131,15 @@ locales components for the kmail package.
 
 
 %prep
-%setup -q -n kmail-22.08.2
-cd %{_builddir}/kmail-22.08.2
+%setup -q -n kmail-22.08.3
+cd %{_builddir}/kmail-22.08.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1665780384
+export SOURCE_DATE_EPOCH=1667931939
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -155,7 +155,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1665780384
+export SOURCE_DATE_EPOCH=1667931939
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kmail
 cp %{_builddir}/kmail-%{version}/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/kmail/c085897bc39e05746ffd2d889a6e84ff1b7ae2d9 || :
@@ -620,7 +620,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libkmailprivate.so.5
-/usr/lib64/libkmailprivate.so.5.21.2
+/usr/lib64/libkmailprivate.so.5.21.3
 /usr/lib64/qt5/plugins/kmailpart.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/archivemailagentconfig.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/followupreminderagentconfig.so
