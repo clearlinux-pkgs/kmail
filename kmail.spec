@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kmail
-Version  : 23.04.0
-Release  : 60
-URL      : https://download.kde.org/stable/release-service/23.04.0/src/kmail-23.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.04.0/src/kmail-23.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.04.0/src/kmail-23.04.0.tar.xz.sig
+Version  : 23.04.1
+Release  : 61
+URL      : https://download.kde.org/stable/release-service/23.04.1/src/kmail-23.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.04.1/src/kmail-23.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.04.1/src/kmail-23.04.1.tar.xz.sig
 Summary  : KDE mail client
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.0
@@ -118,31 +118,48 @@ locales components for the kmail package.
 
 
 %prep
-%setup -q -n kmail-23.04.0
-cd %{_builddir}/kmail-23.04.0
+%setup -q -n kmail-23.04.1
+cd %{_builddir}/kmail-23.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682117995
+export SOURCE_DATE_EPOCH=1684880315
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+%cmake ..
+make  %{?_smp_mflags}
+popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1682117995
+export SOURCE_DATE_EPOCH=1684880315
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kmail
 cp %{_builddir}/kmail-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kmail/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
@@ -155,6 +172,9 @@ cp %{_builddir}/kmail-%{version}/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/sha
 cp %{_builddir}/kmail-%{version}/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kmail/20079e8f79713dce80ab09774505773c926afa2a || :
 cp %{_builddir}/kmail-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kmail/7d9831e05094ce723947d729c2a46a09d6e90275 || :
 cp %{_builddir}/kmail-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kmail/7d9831e05094ce723947d729c2a46a09d6e90275 || :
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
@@ -167,12 +187,22 @@ popd
 %find_lang akonadi_unifiedmailbox_agent
 %find_lang kmail-refresh-settings
 %find_lang ktnef
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/akonadi_archivemail_agent
+/V3/usr/bin/akonadi_followupreminder_agent
+/V3/usr/bin/akonadi_mailfilter_agent
+/V3/usr/bin/akonadi_mailmerge_agent
+/V3/usr/bin/akonadi_sendlater_agent
+/V3/usr/bin/akonadi_unifiedmailbox_agent
+/V3/usr/bin/kmail
+/V3/usr/bin/kmail-refresh-settings
+/V3/usr/bin/ktnef
 /usr/bin/akonadi_archivemail_agent
 /usr/bin/akonadi_followupreminder_agent
 /usr/bin/akonadi_mailfilter_agent
@@ -605,8 +635,23 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/libkmailprivate.so.5
+/V3/usr/lib64/libkmailprivate.so.5.23.1
+/V3/usr/lib64/qt5/plugins/kmailpart.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/archivemailagentconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/akonadi/config/followupreminderagentconfig.so
+/V3/usr/lib64/qt5/plugins/pim5/kcms/kmail/kcm_kmail_accounts.so
+/V3/usr/lib64/qt5/plugins/pim5/kcms/kmail/kcm_kmail_appearance.so
+/V3/usr/lib64/qt5/plugins/pim5/kcms/kmail/kcm_kmail_composer.so
+/V3/usr/lib64/qt5/plugins/pim5/kcms/kmail/kcm_kmail_misc.so
+/V3/usr/lib64/qt5/plugins/pim5/kcms/kmail/kcm_kmail_plugins.so
+/V3/usr/lib64/qt5/plugins/pim5/kcms/kmail/kcm_kmail_security.so
+/V3/usr/lib64/qt5/plugins/pim5/kcms/summary/kcmkmailsummary.so
+/V3/usr/lib64/qt5/plugins/pim5/kcms/summary/kcmkontactsummary.so
+/V3/usr/lib64/qt5/plugins/pim5/kontact/kontact_kmailplugin.so
+/V3/usr/lib64/qt5/plugins/pim5/kontact/kontact_summaryplugin.so
 /usr/lib64/libkmailprivate.so.5
-/usr/lib64/libkmailprivate.so.5.23.0
+/usr/lib64/libkmailprivate.so.5.23.1
 /usr/lib64/qt5/plugins/kmailpart.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/archivemailagentconfig.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/followupreminderagentconfig.so
