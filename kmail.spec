@@ -7,7 +7,7 @@
 #
 Name     : kmail
 Version  : 23.04.1
-Release  : 62
+Release  : 63
 URL      : https://download.kde.org/stable/release-service/23.04.1/src/kmail-23.04.1.tar.xz
 Source0  : https://download.kde.org/stable/release-service/23.04.1/src/kmail-23.04.1.tar.xz
 Source1  : https://download.kde.org/stable/release-service/23.04.1/src/kmail-23.04.1.tar.xz.sig
