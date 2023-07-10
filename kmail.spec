@@ -7,7 +7,7 @@
 #
 Name     : kmail
 Version  : 23.04.3
-Release  : 68
+Release  : 69
 URL      : https://download.kde.org/stable/release-service/23.04.3/src/kmail-23.04.3.tar.xz
 Source0  : https://download.kde.org/stable/release-service/23.04.3/src/kmail-23.04.3.tar.xz
 Source1  : https://download.kde.org/stable/release-service/23.04.3/src/kmail-23.04.3.tar.xz.sig
@@ -19,6 +19,7 @@ Requires: kmail-data = %{version}-%{release}
 Requires: kmail-lib = %{version}-%{release}
 Requires: kmail-license = %{version}-%{release}
 Requires: kmail-locales = %{version}-%{release}
+Requires: gpgme-extras
 BuildRequires : akonadi-contacts-dev
 BuildRequires : akonadi-dev
 BuildRequires : akonadi-mime-dev
@@ -127,7 +128,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1689014815
+export SOURCE_DATE_EPOCH=1689018060
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -160,7 +161,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1689014815
+export SOURCE_DATE_EPOCH=1689018060
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kmail
 cp %{_builddir}/kmail-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kmail/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
