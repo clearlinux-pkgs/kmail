@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kmail
-Version  : 23.04.3
-Release  : 72
-URL      : https://download.kde.org/stable/release-service/23.04.3/src/kmail-23.04.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.04.3/src/kmail-23.04.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.04.3/src/kmail-23.04.3.tar.xz.sig
+Version  : 23.08.0
+Release  : 73
+URL      : https://download.kde.org/stable/release-service/23.08.0/src/kmail-23.08.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.08.0/src/kmail-23.08.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.08.0/src/kmail-23.08.0.tar.xz.sig
 Summary  : KDE mail client
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GFDL-1.2 GPL-2.0 GPL-3.0 LGPL-2.0
@@ -44,7 +44,6 @@ BuildRequires : kmime-dev
 BuildRequires : knotifyconfig-dev
 BuildRequires : kontactinterface-dev
 BuildRequires : kpimtextedit-dev
-BuildRequires : ktextaddons-dev
 BuildRequires : ktnef-dev
 BuildRequires : kuserfeedback-dev
 BuildRequires : libassuan-dev
@@ -120,15 +119,15 @@ locales components for the kmail package.
 
 
 %prep
-%setup -q -n kmail-23.04.3
-cd %{_builddir}/kmail-23.04.3
+%setup -q -n kmail-23.08.0
+cd %{_builddir}/kmail-23.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1689018060
+export SOURCE_DATE_EPOCH=1693243489
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -161,7 +160,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1689018060
+export SOURCE_DATE_EPOCH=1693243489
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kmail
 cp %{_builddir}/kmail-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kmail/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
@@ -637,7 +636,7 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libkmailprivate.so.5.23.3
+/V3/usr/lib64/libkmailprivate.so.5.24.0
 /V3/usr/lib64/qt5/plugins/kmailpart.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/archivemailagentconfig.so
 /V3/usr/lib64/qt5/plugins/pim5/akonadi/config/followupreminderagentconfig.so
@@ -652,7 +651,7 @@ popd
 /V3/usr/lib64/qt5/plugins/pim5/kontact/kontact_kmailplugin.so
 /V3/usr/lib64/qt5/plugins/pim5/kontact/kontact_summaryplugin.so
 /usr/lib64/libkmailprivate.so.5
-/usr/lib64/libkmailprivate.so.5.23.3
+/usr/lib64/libkmailprivate.so.5.24.0
 /usr/lib64/qt5/plugins/kmailpart.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/archivemailagentconfig.so
 /usr/lib64/qt5/plugins/pim5/akonadi/config/followupreminderagentconfig.so
