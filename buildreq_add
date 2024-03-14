@@ -27,9 +27,10 @@ libksieve-dev
 mailcommon-dev
 messagelib-dev
 pimcommon-dev
-qtwebengine-dev
+qt6webengine-dev
 syntax-highlighting-dev
 grantlee-dev
 grantleetheme-dev
 kimap-staticdev
 gpgme-extras
+qtkeychain-dev
