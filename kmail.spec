@@ -9,7 +9,7 @@
 #
 Name     : kmail
 Version  : 24.02.0
-Release  : 86
+Release  : 87
 URL      : https://download.kde.org/stable/release-service/24.02.0/src/kmail-24.02.0.tar.xz
 Source0  : https://download.kde.org/stable/release-service/24.02.0/src/kmail-24.02.0.tar.xz
 Source1  : https://download.kde.org/stable/release-service/24.02.0/src/kmail-24.02.0.tar.xz.sig
