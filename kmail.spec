@@ -9,7 +9,7 @@
 #
 Name     : kmail
 Version  : 24.05.2
-Release  : 99
+Release  : 100
 URL      : https://download.kde.org/stable/release-service/24.05.2/src/kmail-24.05.2.tar.xz
 Source0  : https://download.kde.org/stable/release-service/24.05.2/src/kmail-24.05.2.tar.xz
 Source1  : https://download.kde.org/stable/release-service/24.05.2/src/kmail-24.05.2.tar.xz.sig
